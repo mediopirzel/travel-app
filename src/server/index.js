@@ -20,33 +20,12 @@ const cors = require('cors');
 app.use(cors());
 
 // Initialize the main project folder
-app.use(express.static('website'));
+app.use(express.static('dist'));
 
 
 // Setup Server
-const port = 8000;
+const port = 8081;
 const server = app.listen(port, ()=> {console.log(`server running on localhost ${port}`) });
 
 
-
-// get route, sending project data for updating UI
-app.get('/add', sendContent);
-
-function sendContent(req,res){
-    res.send(projectData);
-    //console.log('Inside sendContent()');
-    //console.log(projectData);
-}
-
-//post route, filling projectdata enpoint object
-app.post('/addData', fillProjectData);
-
-function fillProjectData(req,res) {
-    projectData['temp'] = req.body.temp;
-    projectData['date'] = req.body.date;
-    projectData['feel'] = req.body.feel;
-    res.send(projectData);
-    //console.log('Inside fillProjectData)');
-    //console.log(projectData);
-}
 
