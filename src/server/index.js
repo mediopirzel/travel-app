@@ -1,5 +1,6 @@
 // Setup empty JS object to act as endpoint for all routes
-projectData = {};
+myTrips = [];
+currentTrip = {};
 
 // Require Express to run server and routes
 const express = require('express');
@@ -28,4 +29,17 @@ const port = 8081;
 const server = app.listen(port, ()=> {console.log(`server running on localhost ${port}`) });
 
 
+//post route, filling projectdata enpoint object
+app.post('/addData', fillCurrentTrip);
 
+function fillCurrentTrip(req,res) {
+    
+    currentTrip['countryName'] = req.body.countryName;
+    currentTrip['lat'] = req.body.lat;
+    currentTrip['lng'] = req.body.lng;
+
+    res.send(currentTrip);
+    
+    console.log('Inside fillProjectData)');
+    console.log(currentTrip);
+}
