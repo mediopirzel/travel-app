@@ -1,8 +1,8 @@
 //POST DATA 
 
 async function postData (url='', data = {}) {
-    console.log('begininig postData');
-    console.log(data)
+    //console.log('begininig postData');
+    //console.log(data)
     const res = await fetch(url, {
         method: 'POST', // *GET, POST, PUT, DELETE, etc.
         credentials: 'same-origin', // include, *same-origin, omit

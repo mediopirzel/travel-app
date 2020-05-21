@@ -1,7 +1,9 @@
 import './js/listeners.js'
+import { checkDate } from './js/checkdates'
 import { testFunction } from './js/app'
-import {geoNamesAPI,weatherbitAPI,pixabayAPI} from './js/apis'
-import {postData} from './js/postdata'
+import { geoNamesAPI, weatherbitAPI, pixabayAPI } from './js/apis'
+import { postData } from './js/postdata'
+
 
 import './styles/style.scss'
 
@@ -10,5 +12,6 @@ export {
     geoNamesAPI,
     weatherbitAPI,
     pixabayAPI,
-    postData
+    postData,
+    checkDate
 }

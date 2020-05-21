@@ -4,6 +4,7 @@ const webpack = require('webpack')
 const HtmlWebPackPlugin = require("html-webpack-plugin")
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const MomentLocalesPlugin = require('moment-locales-webpack-plugin');
 
 module.exports = {
     entry: './src/client/index.js',
@@ -52,5 +53,7 @@ module.exports = {
         new CopyWebpackPlugin([
             {from:'./src/client/media/img', to:'media/img'} 
         ]),
+        // To strip all locales except “en”
+        new MomentLocalesPlugin(),
     ]
 }
