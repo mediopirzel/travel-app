@@ -40,15 +40,36 @@ app.post('/addData', fillCurrentTrip);
 function fillCurrentTrip(req,res) {
     //assign all elements of the revided object to a temp object.
     Object.assign(currentTrip, req.body);
-
-    /*
-    currentTrip['countryName'] = req.body.countryName;
-    currentTrip['lat'] = req.body.lat;
-    currentTrip['lng'] = req.body.lng;
-    currentTrip['name'] = req.body.name;
-    */
     res.send(currentTrip);
-    
-    console.log('Inside fillProjectData)');
-    console.log(currentTrip);
+    //console.log('Inside fillProjectData)');
+    //console.log(currentTrip);
+}
+
+// get route, sending project data for updating UI
+app.get('/getCurrent', sendCurrent);
+
+function sendCurrent(req,res){
+    res.send(currentTrip);
+    //console.log('Inside sendContent:');
+    //console.log(currentTrip);
+}
+
+// get route, sending project data for updating UI
+app.get('/getTrips', sendTrips);
+
+function sendTrips(req,res){
+    res.send(myTrips);
+    //console.log('Inside sendContent:');
+    //console.log(currentTrip);
+}
+
+app.get('/save',  saveCurrent);
+function saveCurrent(req,res){
+    //push current trip
+    myTrips.push(currentTrip)
+    //clean current Trip
+    currentTrip = {};
+    res.send(myTrips);
+    //console.log('after push');
+    console.log(myTrips);
 }

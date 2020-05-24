@@ -13,8 +13,8 @@ async function postData (url='', data = {}) {
       });
     try{
         const newData = await res.json();
-        console.log (`Ì'm the postData function on try step:`);
-        console.log(newData);
+        //console.log (`Ì'm the postData function on try step:`);
+        //console.log(newData);
         return newData;
 
     } catch(error) {

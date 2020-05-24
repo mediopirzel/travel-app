@@ -6,3 +6,22 @@ body {
 .templogo {
     width: 100px;
 }
+
+.main-search,
+.current-trip,
+.my-trips {
+    display: none;
+}
+
+
+.search-view .main-search,
+.current-view .current-trip,
+.trips-view .my-trips{
+    display: block;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+

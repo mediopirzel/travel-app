@@ -1,5 +1,5 @@
 import moment from 'moment';
-const todayDate = moment();
+const todayDate = moment().startOf('day');
 
 function checkDate (date) {
     //console.log(date);
@@ -10,10 +10,10 @@ function checkDate (date) {
         const departure = moment(date);
 
         let daysRemaining = departure.diff(todayDate, 'days');
-        console.log(daysRemaining);
+        //console.log(daysRemaining);
         if(daysRemaining >= 0) {
             const dataDays = {
-                    'departure' :  moment(departure).format('YYYY-MM-DD'),
+                    'departure' :  moment(departure).format('dddd, MMMM Do YYYY'),
                     'daysRemaining' : daysRemaining
             }
             //console.log(dataDays);

@@ -2,11 +2,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Travel APP</title>
 <link href="https://fonts.googleapis.com/css2?family=Signika:wght@300;700&display=swap" rel="stylesheet">
 <!--<link rel="stylesheet" href="style.css">-->
 </head>
- <body>
+ <body class="search-view">
 
   <header class="main-header">
     <div class="logo-wrapper"><img src="../media/img/travel-app-logo.svg" alt="travel app"></div>
@@ -15,20 +16,21 @@
       <a href="#" class="menu-search"><span>search</span></a></nav>
   </header>
   <main>
-    <form class="main-search"></form>
-    <div class="current-trip"></div>
+    <form class="main-search">
+      <div id="app">
+        <input type="text" id="destination-field">
+        <input type="date" placeholder="dd/mm/yyyy" id="date-field" value="2020-05-18"
+        min="2020-05-18" max="2021-05-18">
+        <button id="generate" type = "submit"> Search </button>
+      </div>
+    </form>
+    <div class="current-trip">
+    </div>
     <div class="my-trips"></div>
   </main>
 
 
 
-<div id = "app">
-    <div>
-    <input type="text" id="destination-field">
-    <input type="date" placeholder="dd/mm/yyyy" id="date-field" value="2020-05-18"
-    min="2020-05-18" max="2021-05-18">
-    <button id="generate" type = "submit"> Generate </button>
-  </div>
-  </div>
+
 </body>
 </html>

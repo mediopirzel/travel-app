@@ -10,8 +10,8 @@ async function geoNamesAPI (destination= '') {
     const req = await fetch(url)
     try{
         const recived = req.json();
-        console.log(`geonames for ${ destination }`)
-        console.log(recived);
+        console.log(`getting lat and lon coordinates from geonames`)
+        //console.log(recived);
         return(recived)
         
 
@@ -21,18 +21,20 @@ async function geoNamesAPI (destination= '') {
 }
 
 async function weatherbitAPI (type='', lat='', lon='', days='') {
+
+    let url =''
     if(type=='forecast'){
-        let url = `${tempURLweatherbitForecast}&lat=${lat}&lon=${lon}&days=${days}`;
+        url = `${tempURLweatherbitForecast}&lat=${lat}&lon=${lon}&days=${days}`;
     } else {
-        let url = `${tempURLweatherbitCurrent}&lat=${lat}&lon=${lon}`;
+        url = `${tempURLweatherbitCurrent}&lat=${lat}&lon=${lon}`;
+        
     }
-    
 
     const req = await fetch(url)
     try{
         const recived = req.json();
-        console.log(`weatherbitAPI for ${lat} & ${lon}`);
-        console.log(recived);
+        console.log(`getting weather forecast from weatherbit`)
+        //console.log(recived);
         return(recived);
 
     } catch(error){
@@ -40,14 +42,16 @@ async function weatherbitAPI (type='', lat='', lon='', days='') {
     }
 }
 
-async function pixabayAPI (destination= '' ) {
+//TODO COUNTRY DESTINATION
+async function pixabayAPI (destination= '', country= '' ) {
     let url = tempURLpixabay + destination;
+    let urlCountry =  tempURLpixabay + country;
 
     const req = await fetch(url)
     try{
         const recived = req.json();
-        console.log(`pixabay for ${ destination }`)
-        console.log(recived);
+        console.log(`getting images from pixabay`)
+        //console.log(recived);
         return(recived);
 
     } catch(error){
