@@ -31,8 +31,6 @@ app.use(express.static('dist'));
 // Setup Server
 const port = 8081;
 const server = app.listen(port, ()=> {console.log(`server running on localhost ${port}`) });
-console.log('moment');
-console.log(moment());
 
 //post route, filling projectdata enpoint object
 app.post('/addData', fillCurrentTrip);
@@ -44,6 +42,24 @@ function fillCurrentTrip(req,res) {
     //console.log('Inside fillProjectData)');
     //console.log(currentTrip);
 }
+
+
+//copy a saved trip to current trip
+app.get('/copyTrip/trip/:idTrip', copySendTrip);
+
+function copySendTrip(req,res){
+    //console.log('inside copySendTript')
+    //console.log(req.params)
+    const requestedTrip = req.params.idTrip;
+
+
+    res.send(currentTrip);
+    //console.log('Inside sendContent:');
+    console.log( `request trips is ${requestedTrip}`);
+}
+
+
+
 
 // get route, sending project data for updating UI
 app.get('/getCurrent', sendCurrent);
@@ -65,11 +81,10 @@ function sendTrips(req,res){
 
 app.get('/save',  saveCurrent);
 function saveCurrent(req,res){
-    //push current trip
+    //push current trip to saved trips
     myTrips.push(currentTrip)
-    //clean current Trip
+    //clean current trip
     currentTrip = {};
     res.send(myTrips);
-    //console.log('after push');
-    console.log(myTrips);
+    //console.log(myTrips);
 }

@@ -1,6 +1,6 @@
 const bodyTag = document.querySelector('body');
 const currentTag = document.querySelector('.current-trip');
-const tripsTag  = document.querySelector('.my-trips'); 
+const tripsTag  = document.querySelector('.my-trips');  
 
 const menuSearch =  document.querySelector('.menu-search');
 const menuMyTrips =  document.querySelector('.menu-my-trips');
@@ -20,10 +20,28 @@ menuMyTrips.addEventListener('click', (event) =>{
 })
 
 
+tripsTag.addEventListener('click', function (event) {
+    event.preventDefault();
+    if (event.target.nodeName === 'A') {  // ← verifies target is desired element
+
+        let trip = event.target.getAttribute("trip-index")
+
+        Client.saveCurrentTrip(`http://localhost:8081/copyTrip/trip/${trip}`)
+        .then(
+            (savedData)=>{
+                console.log('savedData')
+                console.log(savedData);
+            }
+        
+        )
+    }
+});
+
+
 
 const cleanForm = ()=> {
     document.getElementById('destination-field').value = '';
-    document.getElementById('date-field').value = '';
+    document.getElementById('date-field').value = '2020-05-29';
 }
 
 
@@ -46,17 +64,16 @@ const showSavedTrips = async () => {
 
             const htmlTextToAdd =  
             `
-            <div class="saved-trip" trip-index="${i}" style="background-image: url(${value.imageUrl})">
+            <div class="saved-trip"  style="background-image: linear-gradient(0deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.5) 100%),url(${value.imageUrl})">
                 <div class="country">${value.destinationCountry}</div>
                 <h3>${value.destination}</h3>
                 <div class="departure">Departing on ${value.departure}</div>
+                <a href="" trip-index="${i}"></a>
             </div>
             `;
-            tripsTag.insertAdjacentHTML('beforeend', htmlTextToAdd);
+            tripsTag.insertAdjacentHTML('afterbegin', htmlTextToAdd);
 
         }
-
-
 
 
 
@@ -89,6 +106,7 @@ const showCurrentTrip = async () => {
         currentTag.innerHTML  =
         `
         <div class="destination-wrapper">
+            
             <div class="country">${allData.destinationCountry}</div>
             <h3>${allData.destination}</h3>
             <div class="departure">Departing on ${allData.departure}</div>
@@ -118,8 +136,9 @@ const showCurrentTrip = async () => {
                 </div>
                 <div class="weather-description">${allData.description}</div>
             </div>
-            <img src="${allData.imageUrl}">
         </div>
+        <div class="destination-image" style="background-image:linear-gradient(0deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.5) 100%),url(${allData.imageUrl})"></div>
+
         `;
 
         const saveTrip = document.querySelector('.save-trip');
@@ -127,6 +146,12 @@ const showCurrentTrip = async () => {
             event.preventDefault();
             bodyTag.setAttribute('class', 'trips-view');
             Client.saveCurrentTrip('http://localhost:8081/save')
+            .then(
+                (savedData)=>{
+                    Client.showSavedTrips()
+                }
+            
+            )
         })
 
 
@@ -138,6 +163,17 @@ const showCurrentTrip = async () => {
 }
 
 
+const copyOneTrip = async (url='', id='') =>{ 
+    const request = await fetch(url);
+    try {
+    // Transform into JSON
+    const allData = await request.json()
+    }
+    catch(error) {
+      console.log("error", error);
+      // appropriately handle the error
+    }
+  };
 
 
 const saveCurrentTrip = async (url='') =>{ 
@@ -152,4 +188,4 @@ const saveCurrentTrip = async (url='') =>{
     }
   };
 
-export {showCurrentTrip,cleanForm,saveCurrentTrip,showSavedTrips}
+export {showCurrentTrip,cleanForm,saveCurrentTrip,showSavedTrips,copyOneTrip}
