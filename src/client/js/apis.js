@@ -11,7 +11,7 @@ async function geoNamesAPI (destination= '') {
     try{
         const recived = req.json();
         console.log(`getting lat and lon coordinates from geonames`)
-        //console.log(recived);
+        console.log(recived);
         return(recived)
         
 

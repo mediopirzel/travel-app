@@ -19,24 +19,17 @@ menuMyTrips.addEventListener('click', (event) =>{
     Client.showSavedTrips();
 })
 
-
 tripsTag.addEventListener('click', function (event) {
     event.preventDefault();
     if (event.target.nodeName === 'A') {  // ← verifies target is desired element
 
         let trip = event.target.getAttribute("trip-index")
-
         Client.saveCurrentTrip(`http://localhost:8081/copyTrip/trip/${trip}`)
         .then(
-            (savedData)=>{
-                console.log('savedData')
-                console.log(savedData);
-            }
-        
+            Client.showCurrentTrip()
         )
     }
 });
-
 
 
 const cleanForm = ()=> {
@@ -51,10 +44,7 @@ const showSavedTrips = async () => {
     bodyTag.setAttribute('class', 'trips-view');
     try{
         const trips = await req.json();
-        
         tripsTag.innerHTML = '';
-
-
 
         for (const [i, value] of trips.entries()) {
         //for (let trip of trips) {
@@ -96,10 +86,21 @@ const showCurrentTrip = async () => {
 
         let weatherClass = '';
 
+        // sometimes min and max temp. are empty
         if(allData.maxTemp && allData.minTemp){
             weatherClass = 'show-forecast'
         } else {
             weatherClass = 'show-current' 
+        }
+
+        let tripButton = '';
+        if(allData.idTrip){
+            tripButton = `<a href="#" class="delete-trip" trip-index="${allData.idTrip}">delete trip</a>`;
+        
+        } else {
+            tripButton = `<a href="#" class="save-trip">save trip</a>`;
+
+
         }
 
 
@@ -111,9 +112,7 @@ const showCurrentTrip = async () => {
             <h3>${allData.destination}</h3>
             <div class="departure">Departing on ${allData.departure}</div>
         </div>
-        <div class="buttons-wrapper">
-            <a href="#" class="save-trip">save trip</a>
-        </div>
+        <div class="buttons-wrapper">${tripButton}</div>
         <div class="trip-info-wrapper">
             <div class="days-remaining-wrapper">
             <div class="days-remaining">${allData.daysRemaining}</div>
@@ -141,18 +140,47 @@ const showCurrentTrip = async () => {
 
         `;
 
-        const saveTrip = document.querySelector('.save-trip');
-        saveTrip.addEventListener('click', (event) =>{
-            event.preventDefault();
-            bodyTag.setAttribute('class', 'trips-view');
-            Client.saveCurrentTrip('http://localhost:8081/save')
-            .then(
-                (savedData)=>{
-                    Client.showSavedTrips()
-                }
-            
-            )
-        })
+
+        if(allData.idTrip){
+        
+            const deleteTrip = document.querySelector('.delete-trip');
+            deleteTrip.addEventListener('click', (event) =>{
+                event.preventDefault();
+                bodyTag.setAttribute('class', 'trips-view');
+
+                let trip = event.target.getAttribute("trip-index");
+                console.log( `el idTrip es ${trip}`)
+                
+                Client.deleteCurrentTrip(`http://localhost:8081/delete/trip/${trip}`)
+                .then(
+                    (savedData)=>{
+                        Client.showSavedTrips()
+                    }
+                
+                )
+
+            })
+        
+        
+        } else {
+
+            const saveTrip = document.querySelector('.save-trip');
+            saveTrip.addEventListener('click', (event) =>{
+                event.preventDefault();
+                bodyTag.setAttribute('class', 'trips-view');
+                Client.saveCurrentTrip('http://localhost:8081/save')
+                .then(
+                    (savedData)=>{
+                        Client.showSavedTrips()
+                    }
+                
+                )
+            })
+
+
+        }
+
+
 
 
     } catch(error){ 
@@ -181,6 +209,9 @@ const saveCurrentTrip = async (url='') =>{
     try {
     // Transform into JSON
     const allData = await request.json()
+    //console.log('resposta desde saveCurrentTrip');
+    //console.log(allData);
+
     }
     catch(error) {
       console.log("error", error);
@@ -188,4 +219,19 @@ const saveCurrentTrip = async (url='') =>{
     }
   };
 
-export {showCurrentTrip,cleanForm,saveCurrentTrip,showSavedTrips,copyOneTrip}
+  const deleteCurrentTrip = async (url='') =>{ 
+    const request = await fetch(url);
+    try {
+    // Transform into JSON
+    const allData = await request.json()
+    //console.log('resposta desde deleteCurrentTrip');
+    //console.log(allData);
+
+    }
+    catch(error) {
+      console.log("error", error);
+      // appropriately handle the error
+    }
+  };
+
+export {showCurrentTrip,cleanForm,saveCurrentTrip,showSavedTrips,copyOneTrip,deleteCurrentTrip}

@@ -37,6 +37,7 @@ app.post('/addData', fillCurrentTrip);
 
 function fillCurrentTrip(req,res) {
     //assign all elements of the revided object to a temp object.
+    delete currentTrip.idTrip
     Object.assign(currentTrip, req.body);
     res.send(currentTrip);
     //console.log('Inside fillProjectData)');
@@ -51,13 +52,30 @@ function copySendTrip(req,res){
     //console.log('inside copySendTript')
     //console.log(req.params)
     const requestedTrip = req.params.idTrip;
-
+    Object.assign(currentTrip, myTrips[requestedTrip]);
+    //add identifier if we need to
+    currentTrip.idTrip = requestedTrip
 
     res.send(currentTrip);
     //console.log('Inside sendContent:');
-    console.log( `request trips is ${requestedTrip}`);
+    console.log(currentTrip);
 }
 
+
+//delete current trip
+app.get('/delete/trip/:idTrip', deleteTrip);
+
+function deleteTrip(req,res){
+    //console.log('inside copySendTript')
+    //console.log(req.params)
+    const requestedTrip = req.params.idTrip;
+
+    myTrips.splice(requestedTrip, 1)
+
+    res.send(currentTrip);
+    //console.log('Inside sendContent:');
+    console.log(currentTrip);
+}
 
 
 
@@ -75,6 +93,7 @@ app.get('/getTrips', sendTrips);
 
 function sendTrips(req,res){
     res.send(myTrips);
+    
     //console.log('Inside sendContent:');
     //console.log(currentTrip);
 }

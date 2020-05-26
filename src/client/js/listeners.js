@@ -38,7 +38,7 @@ mainButton.addEventListener('click', (event) =>{
                     //save to  endpoint current Trip
                     Client.postData('http://localhost:8081/addData', {
                         destinationCountry: destinationCountry, 
-                        destination: myData.toponymName, 
+                        destination: myData.name, 
                         lat: myData.lat, 
                         lng: myData.lng});
                     return myData;

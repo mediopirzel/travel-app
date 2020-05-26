@@ -1,5 +1,6 @@
 $blue: #264653;
 $green: #2A9D8F;
+$red : #E76F51;
 
 
 body {
@@ -70,10 +71,15 @@ img {
     z-index: 1;
 }
 
+.delete-trip,
 .save-trip{
     background: $green;
     color: #FFF;
     padding: 0.5em 1em;
     display: inline-block;
     margin: 0.2em 0;
+}
+
+.delete-trip{
+    background: $red;
 }
