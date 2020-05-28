@@ -84,7 +84,7 @@ app.get('/getCurrent', sendCurrent);
 
 function sendCurrent(req,res){
     res.send(currentTrip);
-    //console.log('Inside sendContent:');
+    //console.log('Inside sendCurrent:');
     //console.log(currentTrip);
 }
 

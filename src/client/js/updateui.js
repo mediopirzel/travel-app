@@ -24,9 +24,13 @@ tripsTag.addEventListener('click', function (event) {
     if (event.target.nodeName === 'A') {  // ← verifies target is desired element
 
         let trip = event.target.getAttribute("trip-index")
+        console.log(`el id de trip es: ${trip }`);
         Client.saveCurrentTrip(`http://localhost:8081/copyTrip/trip/${trip}`)
         .then(
-            Client.showCurrentTrip()
+            (savedData)=>{
+                Client.showCurrentTrip()
+            }
+            
         )
     }
 });
@@ -81,8 +85,8 @@ const showCurrentTrip = async () => {
     bodyTag.setAttribute('class', 'current-view');
     try{
         const allData = await req.json();
-        //console.log ('ok, all date recived');
-        //console.log(allData);
+        console.log ('showCurrentTrip:');
+        console.log(allData);
 
         let weatherClass = '';
 
@@ -127,7 +131,7 @@ const showCurrentTrip = async () => {
             </div>
 
             <div class="weather-wrapper ${weatherClass}">
-                <div class="weather-icon icon-${allData.icon}">icon</div>
+                <div class="weather-icon icon-${allData.icon}"></div>
                 <div class="temp-wrapper>
                 <span class="temp">${allData.temp}</span>
                 <span class="min-temp">${allData.minTemp}</span>
@@ -179,8 +183,6 @@ const showCurrentTrip = async () => {
 
 
         }
-
-
 
 
     } catch(error){ 

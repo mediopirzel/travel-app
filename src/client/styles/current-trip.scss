@@ -1,0 +1,62 @@
+@import 'variables.scss';
+
+.destination-image {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    z-index: -1;
+}
+
+.saved-trip{
+    margin-bottom: 2em;
+    padding: 1em;
+    position: relative;
+}
+
+.saved-trip a {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    z-index: 1;
+}
+
+
+.delete-trip,
+.save-trip{
+    font-size: 0.8em;
+    text-transform: uppercase;
+    font-weight: 700;
+    border-radius: 8px;
+    background: $green;
+    color: #FFF;
+    padding: 0.9em 2.3em;
+    display: inline-block;
+    margin: 1em 0;
+}
+
+.delete-trip{
+    background: $red;
+}
+
+.days-remaining-wrapper,
+.coordinates-wrapper,
+.weather-wrapper {
+    background: rgba($blue, .8);
+
+    border-radius: 6px;
+    padding: 1em;
+}
+
+.destination-wrapper h3 {
+    margin: 0;
+    font-size: 2.4444em;
+}
+

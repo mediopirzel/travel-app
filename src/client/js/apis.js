@@ -2,7 +2,8 @@
 const tempURLgeoNames = 'http://api.geonames.org/searchJSON?maxRows=10&username=xaviersoler&q=';
 const tempURLweatherbitCurrent = 'https://api.weatherbit.io/v2.0/current?key=d58226ff5a814dfe9b64a24e0dac1fe1'
 const tempURLweatherbitForecast = 'https://api.weatherbit.io/v2.0/forecast/daily?key=d58226ff5a814dfe9b64a24e0dac1fe1'
-const tempURLpixabay = 'https://pixabay.com/api/?key=1160014-f74a9dea679f553345e2af90f&image_type=photo&category=places&orientation=horizontal&per_page=3&q=';
+//const tempURLpixabay = 'https://pixabay.com/api/?key=1160014-f74a9dea679f553345e2af90f&image_type=photo&category=places&orientation=horizontal&per_page=3&q=';
+const tempURLpixabay = 'https://pixabay.com/api/?key=1160014-f74a9dea679f553345e2af90f&image_type=photo&orientation=horizontal&per_page=3&q=';
 
 
 async function geoNamesAPI (destination= '') {
