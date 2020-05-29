@@ -132,7 +132,7 @@ const showCurrentTrip = async () => {
 
             <div class="weather-wrapper ${weatherClass}">
                 <div class="weather-icon icon-${allData.icon}"></div>
-                <div class="temp-wrapper>
+                <div class="temp-wrapper">
                 <span class="temp">${allData.temp}</span>
                 <span class="min-temp">${allData.minTemp}</span>
                 <span class="max-temp">${allData.maxTemp}</span>

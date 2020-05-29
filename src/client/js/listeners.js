@@ -17,9 +17,6 @@ mainButton.addEventListener('click', (event) =>{
 
         } 
 
-        //save country destination if there are no pictures for destination
-        let destinationCountry = '';
-
         //Post Dates to current trip object
         Client.postData('http://localhost:8081/addData', {
             daysRemaining: verifyedDate.daysRemaining, 
@@ -78,20 +75,25 @@ mainButton.addEventListener('click', (event) =>{
 
             }
         ).then(
-            () =>{
+            (weatherData) =>{
                 return Client.pixabayAPI(destination, encodeURIComponent(destinationCountry))
             }
 
         ).then(
             (pixabayData)=>{
                 const myPixabay = pixabayData.hits[0];
+                let imgTrip = ''
                 if(myPixabay){
-                    return Client.postData('http://localhost:8081/addData', { imageUrl : myPixabay.largeImageURL});
+                    imgTrip = myPixabay.largeImageURL
+                } else {
+                    imgTrip = '../media/img/default.jpg'
                 }
+
+                return Client.postData('http://localhost:8081/addData', { imageUrl : imgTrip});
 
             }
         ).then(
-            (cuenca)=>{
+            (data)=>{
                 Client.showCurrentTrip()
             }
         )

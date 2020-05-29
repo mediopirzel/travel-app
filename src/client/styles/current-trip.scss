@@ -46,13 +46,23 @@
     background: $red;
 }
 
+.trip-info-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 1em;
+}
+
 .days-remaining-wrapper,
 .coordinates-wrapper,
 .weather-wrapper {
     background: rgba($blue, .8);
 
-    border-radius: 6px;
+    border-radius: 8px;
     padding: 1em;
+}
+
+.weather-wrapper {
+    grid-column: span 2;
 }
 
 .destination-wrapper h3 {
@@ -60,3 +70,20 @@
     font-size: 2.4444em;
 }
 
+.days-remaining,
+.temp,
+.min-temp,
+.max-temp {
+    font-size: 3.3333em;
+}
+
+
+.temp::before{
+    content: '';
+    width: 1em;
+    height: 1em;
+    display: inline-block;
+    vertical-align: middle;;
+    background: url(../media/img/ico-temp.svg) center center no-repeat;
+    background-size: contain;
+}

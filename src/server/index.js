@@ -57,7 +57,7 @@ function copySendTrip(req,res){
     currentTrip.idTrip = requestedTrip
 
     res.send(currentTrip);
-    //console.log('Inside sendContent:');
+    console.log('Inside sendContent:');
     console.log(currentTrip);
 }
 
@@ -84,8 +84,8 @@ app.get('/getCurrent', sendCurrent);
 
 function sendCurrent(req,res){
     res.send(currentTrip);
-    //console.log('Inside sendCurrent:');
-    //console.log(currentTrip);
+    console.log('Inside sendCurrent:');
+    console.log(currentTrip);
 }
 
 // get route, sending project data for updating UI
@@ -94,8 +94,8 @@ app.get('/getTrips', sendTrips);
 function sendTrips(req,res){
     res.send(myTrips);
     
-    //console.log('Inside sendContent:');
-    //console.log(currentTrip);
+    console.log('Inside sendTrips:');
+    console.log(currentTrip);
 }
 
 app.get('/save',  saveCurrent);
@@ -106,4 +106,7 @@ function saveCurrent(req,res){
     currentTrip = {};
     res.send(myTrips);
     //console.log(myTrips);
+
+    console.log('Inside saveCurrent:');
+    console.log(currentTrip);
 }
