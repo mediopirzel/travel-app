@@ -9,13 +9,21 @@ mainButton.addEventListener('click', (event) =>{
  
     //console.log(destination);
 
+
     const verifyedDate = Client.checkDate(departure);
 
+        if(!destination){
+            Client.showStatus('Please enter a valid destination')
+            return
+        }
+
         if(!verifyedDate){
-            console.log('date is not correct');
+            Client.showStatus('Please enter a valid date');
             return
 
         } 
+
+        Client.showStatus('Searching...')
 
         //Post Dates to current trip object
         Client.postData('http://localhost:8081/addData', {
@@ -29,20 +37,18 @@ mainButton.addEventListener('click', (event) =>{
             (geonameData) =>{ 
                 const myData = geonameData.geonames[0];
     
-                if(myData){
-                    //for pixabay if there is no destination picture
-                    destinationCountry = myData.countryName
-                    //save to  endpoint current Trip
-                    Client.postData('http://localhost:8081/addData', {
-                        destinationCountry: destinationCountry, 
-                        destination: myData.name, 
-                        lat: myData.lat, 
-                        lng: myData.lng});
-                    return myData;
-    
-                } else {
-                    console.log('error on geonames');
-                }
+                if(!myData){
+                    Client.showStatus('We can\'t find your destination');
+                    return
+                } 
+                destinationCountry = myData.countryName
+                //save to  endpoint current Trip
+                Client.postData('http://localhost:8081/addData', {
+                    destinationCountry: destinationCountry, 
+                    destination: myData.name, 
+                    lat: myData.lat, 
+                    lng: myData.lng});
+                return myData;
     
             }
     
@@ -82,13 +88,19 @@ mainButton.addEventListener('click', (event) =>{
         ).then(
             (pixabayData)=>{
                 const myPixabay = pixabayData.hits[0];
+                
                 let imgTrip = ''
                 if(myPixabay){
                     imgTrip = myPixabay.largeImageURL
                 } else {
-                    imgTrip = '../media/img/default.jpg'
+                    imgTrip = '../media/img/default-destination.jpg'
                 }
+                
+                //let imgTrip = myPixabay ? myPixabay.largeImageURL : '../media/img/default-destination.jpg';
+                
+                //const imgTrip = myPixabay.largeImageURL || '../media/img/default-destination.jpg'
 
+                return Client.postData('http://localhost:8081/addData', { imageUrl : imgTrip});
                 return Client.postData('http://localhost:8081/addData', { imageUrl : imgTrip});
 
             }

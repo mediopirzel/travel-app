@@ -7,7 +7,8 @@ import {showCurrentTrip,
     cleanForm,saveCurrentTrip,
     showSavedTrips,
     copyOneTrip,
-    deleteCurrentTrip
+    deleteCurrentTrip,
+    showStatus
 } from './js/updateui'
 
 import './styles/header.scss'
@@ -15,7 +16,7 @@ import './styles/style.scss'
 import './styles/current-trip.scss'
 import './styles/weather-icons.scss'
 import './styles/search-form.scss'
-
+import './styles/my-trips.scss'
 
 export {
     testFunction,
@@ -29,5 +30,6 @@ export {
     saveCurrentTrip,
     showSavedTrips,
     copyOneTrip,
-    deleteCurrentTrip
+    deleteCurrentTrip,
+    showStatus
 }

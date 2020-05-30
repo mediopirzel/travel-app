@@ -1,0 +1,41 @@
+.my-trips{
+    grid-gap: 1em;
+}
+
+.my-trips h2 {
+    font-weight: 300;
+    font-size: 1.6667em;
+    text-align: center;
+}
+
+.saved-trip{
+    padding: 4em 1em 2em 1em;
+    position: relative;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.saved-trip a {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    z-index: 1;
+}
+
+.saved-trip h3 {
+    margin: 0;
+    font-size: 1.6667em;
+}
+
+
+@media only screen
+and (min-width : 900px) {
+    .my-trips{
+       grid-template-columns: 1fr 1fr;
+    }
+
+}

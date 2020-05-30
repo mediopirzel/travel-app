@@ -6,6 +6,7 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MomentLocalesPlugin = require('moment-locales-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 
 //const WorkboxPlugin = require('workbox-webpack-plugin')
 
@@ -48,7 +49,8 @@ module.exports = {
         ]),
         // To strip all locales except “en”
         new MomentLocalesPlugin(),
-        //new WorkboxPlugin.GenerateSW(),
+        //hide variables
+        new Dotenv({safe: true}),
 
     ]
 }

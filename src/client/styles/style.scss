@@ -10,8 +10,9 @@ html {
   }
 
 body {
-    font-family: 'Signika', sans-serif;
-    font-weight: 300;
+    font: normal 300 14px  'Signika', sans-serif;
+    /*font-family: 'Signika', sans-serif;
+    font-weight: 300;*/
     color: #FFF;
     background-color: $blue;
     margin: 0;
@@ -39,13 +40,46 @@ a {
 }
 
 
-.search-view .main-search,
-.current-view .current-trip,
-.trips-view .my-trips{
+.search-view .main-search{
     display: block;
 }
+
+.trips-view .my-trips{
+    display: grid;
+}
+
+.current-view .current-trip {
+    display: flex;
+}
+
 
 img {
     max-width: 100%;
     height: auto;
 }
+
+
+
+@media only screen
+    and (min-width : 600px) {
+        body {
+            font-size: 16px;
+        }
+    }
+
+
+    @media only screen
+    and (min-width : 900px) {
+        body {
+            font-size: 18px;
+        }
+
+    }
+
+    @media only screen
+    and (min-width : 1200px) {
+        body {
+            font-size: 20px;
+        }
+
+    }

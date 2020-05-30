@@ -1,9 +1,11 @@
 .weather-icon {
-    width: 3em;
-    height: 3em;
+    width: 100%;
+    height: 100%;
     background-size: contain;
     background-position: center center;
-    background-repeat: no-repeat;   
+    background-repeat: no-repeat;
+    grid-row: span 2;
+    border-right: 1em solid transparent;
 }
 
 .icon-t01d,

@@ -1,3 +1,4 @@
+import moment from 'moment';
 const bodyTag = document.querySelector('body');
 const currentTag = document.querySelector('.current-trip');
 const tripsTag  = document.querySelector('.my-trips');  
@@ -5,6 +6,7 @@ const tripsTag  = document.querySelector('.my-trips');
 const menuSearch =  document.querySelector('.menu-search');
 const menuMyTrips =  document.querySelector('.menu-my-trips');
 
+const formLabel = document.querySelector('.main-search').querySelector('h3');
 
 
 menuSearch.addEventListener('click', (event) =>{
@@ -35,11 +37,17 @@ tripsTag.addEventListener('click', function (event) {
     }
 });
 
+const showStatus = (message)=> {
+    formLabel.textContent = message;
+}
 
 const cleanForm = ()=> {
     document.getElementById('destination-field').value = '';
-    document.getElementById('date-field').value = '2020-05-29';
+    document.getElementById('date-field').value = moment().format('YYYY-MM-DD');
+    showStatus('Please enter your destination and date you plan to travel.')
 }
+cleanForm();
+
 
 
 const showSavedTrips = async () => {
@@ -49,6 +57,12 @@ const showSavedTrips = async () => {
     try{
         const trips = await req.json();
         tripsTag.innerHTML = '';
+
+        if(trips =='') {
+            tripsTag.innerHTML = '<h2>No saved trips available.</h2>';
+
+            return
+        }
 
         for (const [i, value] of trips.entries()) {
         //for (let trip of trips) {
@@ -119,15 +133,17 @@ const showCurrentTrip = async () => {
         <div class="buttons-wrapper">${tripButton}</div>
         <div class="trip-info-wrapper">
             <div class="days-remaining-wrapper">
+            <div class="icon"></div>
             <div class="days-remaining">${allData.daysRemaining}</div>
-            <span>days remaining</span>
+            <div class="legend">days remaining</div>
             </div>
             <div class="coordinates-wrapper">
+            <div class="icon"></div>
             <div class="coordinates">
-                <span>lat:${allData.lat} </span>
-                <span>lng:${allData.lng} </span>
+                <div>lat:${allData.lat} </div>
+                <div>lng:${allData.lng} </div>
             </div>
-            <span>coordinates</span>
+            <div class="legend">coordinates</div>
             </div>
 
             <div class="weather-wrapper ${weatherClass}">
@@ -236,4 +252,10 @@ const saveCurrentTrip = async (url='') =>{
     }
   };
 
-export {showCurrentTrip,cleanForm,saveCurrentTrip,showSavedTrips,copyOneTrip,deleteCurrentTrip}
+export {showCurrentTrip,
+    cleanForm,
+    saveCurrentTrip,
+    showSavedTrips,
+    copyOneTrip,
+    deleteCurrentTrip,
+    showStatus}

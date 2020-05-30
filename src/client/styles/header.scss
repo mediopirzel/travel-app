@@ -3,18 +3,18 @@
 
 .main-header{
     position: relative;
-    max-width: 1200px;
+    max-width: $content-width;
     margin: 0 auto 2em auto;
 
     nav  {
         margin-top: 1em;
         position: absolute;
         top: 0;
-        right: 1em;
+        right: 0;
 
 
         a {
-            margin-left: 1.1111em;
+            margin-left: 1.1111em;  
         }
 
         a:before {

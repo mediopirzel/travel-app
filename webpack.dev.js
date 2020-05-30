@@ -5,6 +5,7 @@ const HtmlWebPackPlugin = require("html-webpack-plugin")
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MomentLocalesPlugin = require('moment-locales-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 
 module.exports = {
     entry: './src/client/index.js',
@@ -55,5 +56,6 @@ module.exports = {
         ]),
         // To strip all locales except “en”
         new MomentLocalesPlugin(),
+        new Dotenv({safe: true}),
     ]
 }

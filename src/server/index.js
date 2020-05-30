@@ -1,6 +1,6 @@
 // Setup empty JS object to act as endpoint for all routes
-myTrips = [];
-currentTrip = {};
+let myTrips = [];
+let currentTrip = {};
 
 // Require Express to run server and routes
 const express = require('express');
@@ -13,6 +13,10 @@ const bodyParser = require('body-parser');
 
 /* Dates */
 const moment = require('moment');
+
+//Environment Variables
+const dotenv = require('dotenv');
+dotenv.config();
 
 
 /* Middleware*/
@@ -36,12 +40,14 @@ const server = app.listen(port, ()=> {console.log(`server running on localhost $
 app.post('/addData', fillCurrentTrip);
 
 function fillCurrentTrip(req,res) {
-    //assign all elements of the revided object to a temp object.
-    delete currentTrip.idTrip
+    //assign all elements of the recided object to a temp object.
+    if(currentTrip.imageUrl){
+        //first delete previous trip
+        currentTrip = {} 
+    }
+
     Object.assign(currentTrip, req.body);
     res.send(currentTrip);
-    //console.log('Inside fillProjectData)');
-    //console.log(currentTrip);
 }
 
 
@@ -49,16 +55,12 @@ function fillCurrentTrip(req,res) {
 app.get('/copyTrip/trip/:idTrip', copySendTrip);
 
 function copySendTrip(req,res){
-    //console.log('inside copySendTript')
-    //console.log(req.params)
     const requestedTrip = req.params.idTrip;
     Object.assign(currentTrip, myTrips[requestedTrip]);
-    //add identifier if we need to
+    //add identifier if need it
     currentTrip.idTrip = requestedTrip
 
     res.send(currentTrip);
-    console.log('Inside sendContent:');
-    console.log(currentTrip);
 }
 
 
@@ -66,47 +68,34 @@ function copySendTrip(req,res){
 app.get('/delete/trip/:idTrip', deleteTrip);
 
 function deleteTrip(req,res){
-    //console.log('inside copySendTript')
-    //console.log(req.params)
     const requestedTrip = req.params.idTrip;
-
     myTrips.splice(requestedTrip, 1)
-
     res.send(currentTrip);
-    //console.log('Inside sendContent:');
-    console.log(currentTrip);
+
 }
 
 
 
-// get route, sending project data for updating UI
+// sends current trip
 app.get('/getCurrent', sendCurrent);
 
 function sendCurrent(req,res){
     res.send(currentTrip);
-    console.log('Inside sendCurrent:');
-    console.log(currentTrip);
 }
 
-// get route, sending project data for updating UI
+// sends all saved trips
 app.get('/getTrips', sendTrips);
 
 function sendTrips(req,res){
     res.send(myTrips);
     
-    console.log('Inside sendTrips:');
-    console.log(currentTrip);
 }
 
+//add current trip to saved trips
 app.get('/save',  saveCurrent);
 function saveCurrent(req,res){
-    //push current trip to saved trips
     myTrips.push(currentTrip)
     //clean current trip
     currentTrip = {};
     res.send(myTrips);
-    //console.log(myTrips);
-
-    console.log('Inside saveCurrent:');
-    console.log(currentTrip);
 }
