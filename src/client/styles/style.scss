@@ -1,0 +1,85 @@
+@import 'variables.scss';
+
+/* all elements border-box */
+
+html {
+    box-sizing: border-box;
+  }
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
+
+body {
+    font: normal 300 14px  'Signika', sans-serif;
+    /*font-family: 'Signika', sans-serif;
+    font-weight: 300;*/
+    color: #FFF;
+    background-color: $blue;
+    margin: 0;
+    padding: 1.1111em;
+    text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-font-smoothing: antialiased;
+	-o-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale 
+}
+
+a {
+    color: #FFF;
+    text-decoration: none;
+}
+
+.templogo {
+    width: 100px;
+}
+
+.main-search,
+.current-trip,
+.my-trips {
+    display: none;
+}
+
+
+.search-view .main-search{
+    display: block;
+}
+
+.trips-view .my-trips{
+    display: grid;
+}
+
+.current-view .current-trip {
+    display: flex;
+}
+
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+
+
+@media only screen
+    and (min-width : 600px) {
+        body {
+            font-size: 16px;
+        }
+    }
+
+
+    @media only screen
+    and (min-width : 900px) {
+        body {
+            font-size: 18px;
+        }
+
+    }
+
+    @media only screen
+    and (min-width : 1200px) {
+        body {
+            font-size: 20px;
+        }
+
+    }

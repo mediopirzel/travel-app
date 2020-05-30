@@ -1,0 +1,7 @@
+<!doctype html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Travel APP</title><link href="https://fonts.googleapis.com/css2?family=Signika:wght@300;700&display=swap" rel="stylesheet"><link href="main.css" rel="stylesheet"></head><body class="search-view"><header class="main-header"><div class="logo-wrapper"><img src="../media/img/travel-app-logo.svg" alt="travel app"></div><nav><a href="#" class="menu-my-trips"><span>my trips</span></a> <a href="#" class="menu-search"><span>search</span></a></nav></header><main><form class="main-search"><h3>Please enter your destination and date you plan to travel.</h3><div class="inner-form"><input id="destination-field" placeholder="Destination"> <input type="date" placeholder="dd/mm/yyyy" id="date-field"> <button id="generate" type="submit">Search</button></div></form><div class="current-trip"></div><div class="my-trips"></div></main><script>// Check that service workers are supported
+    if ('serviceWorker' in navigator) {
+        // Use the window load event to keep the page load performant
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('/service-worker.js');
+        });
+    }</script><script src="main.js"></script></body></html>

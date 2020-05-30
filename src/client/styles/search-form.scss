@@ -1,0 +1,52 @@
+@import 'variables.scss';
+
+.inner-form {
+    padding: 1em;
+    background: rgba(0,0,0,0.5);
+    display: grid;
+    grid-gap: 1em;
+}
+
+
+.main-search h3 {
+    font-weight: 300;
+    font-size: 1.6667em;
+    text-align: center;
+}
+
+.inner-form input {
+    background: #435D67;
+    border: 0;
+    padding: 1em;
+    margin: 0;
+    width: 100%;
+    color: #FFF;
+    font-family: 'Signika', sans-serif;
+    font-weight: 300;
+    font-size: 1.2em;
+}
+
+.inner-form input::placeholder{
+    color: #FFF;
+    opacity: 1;
+}
+
+.inner-form button {
+    font-size: 1em;
+    background: orange;
+    margin: 0;
+    padding: 1.2em;
+    border: 0;
+    color: #FFF;
+    font-family: 'Signika', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+
+@media only screen
+    and (min-width : 900px) {
+        .inner-form {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }

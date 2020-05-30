@@ -1,0 +1,102 @@
+@import 'variables.scss';
+
+
+.main-header{
+    position: relative;
+    max-width: $content-width;
+    margin: 0 auto 2em auto;
+
+    nav  {
+        margin-top: 1em;
+        position: absolute;
+        top: 0;
+        right: 0;
+
+
+        a {
+            margin-left: 1.1111em;  
+        }
+
+        a:before {
+            content: '';
+            width: 2.2222em;
+            height: 2.2222em;
+            display: inline-block;
+            vertical-align: middle;
+            background-size: contain;
+            background-position: center center;
+            background-repeat: no-repeat;
+        }
+        a.menu-my-trips:before {
+            background-image: url(../media/img/ico-my-trips.svg);
+        }
+        a.menu-search:before {
+            background-image: url(../media/img/ico-search.svg);
+        }
+
+        span {
+            display: none;
+            font: normal 700 1.1111em 'Signika', serif
+        }
+
+    }
+
+} 
+
+.search-view .logo-wrapper{
+    text-align: center;
+}
+
+.logo-wrapper img {
+    max-width: 10em;
+    transition: all 0.5s ease-out;
+}
+
+
+
+.search-view .logo-wrapper img {
+    max-width: 14em;
+    margin-top: 5em;
+    transition: all 0.5s ease-out;
+}
+
+
+@media only screen
+    and (min-width : 600px) {
+
+        .logo-wrapper img {
+            max-width: 15em;
+        }
+
+        .search-view .logo-wrapper img {
+            max-width: 20em;
+            margin-top: 5em;
+        }
+
+}
+
+@media only screen
+    and (min-width : 800px) {
+
+        .main-header{
+            nav  {
+
+                a {
+                    margin-left: 3.333em;
+                }
+
+                span {
+                    display: inline-block;
+                    margin-left: 0.5em;
+                }
+
+                a:before {
+                    width: 2.2222em;
+                    height: 2.2222em;
+                }
+        
+            }
+        
+        } 
+
+    }
