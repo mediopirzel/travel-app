@@ -99,9 +99,6 @@ const showCurrentTrip = async () => {
     bodyTag.setAttribute('class', 'current-view');
     try{
         const allData = await req.json();
-        console.log ('showCurrentTrip:');
-        console.log(allData);
-
         let weatherClass = '';
 
         // sometimes min and max temp. are empty
@@ -227,8 +224,6 @@ const saveCurrentTrip = async (url='') =>{
     try {
     // Transform into JSON
     const allData = await request.json()
-    //console.log('resposta desde saveCurrentTrip');
-    //console.log(allData);
 
     }
     catch(error) {
@@ -242,9 +237,6 @@ const saveCurrentTrip = async (url='') =>{
     try {
     // Transform into JSON
     const allData = await request.json()
-    //console.log('resposta desde deleteCurrentTrip');
-    //console.log(allData);
-
     }
     catch(error) {
       console.log("error", error);

@@ -56,6 +56,9 @@ module.exports = {
         ]),
         // To strip all locales except “en”
         new MomentLocalesPlugin(),
-        new Dotenv({safe: true}),
+        new Dotenv({
+            path: './.env', // Path to .env file (this is the default)
+            safe: false // load .env.example (defaults to "false" which does not use dotenv-safe)
+          })
     ]
 }

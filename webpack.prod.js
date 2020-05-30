@@ -7,8 +7,7 @@ const TerserPlugin = require('terser-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MomentLocalesPlugin = require('moment-locales-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
-
-//const WorkboxPlugin = require('workbox-webpack-plugin')
+const WorkboxPlugin = require('workbox-webpack-plugin')
 
 module.exports = {
     entry: './src/client/index.js',
@@ -50,7 +49,14 @@ module.exports = {
         // To strip all locales except “en”
         new MomentLocalesPlugin(),
         //hide variables
-        new Dotenv({safe: true}),
+        //new Dotenv({safe: true}),
+
+        new Dotenv({
+            path: './.env', // Path to .env file (this is the default)
+            safe: false // load .env.example (defaults to "false" which does not use dotenv-safe)
+          }),
+        //Service workers
+        new WorkboxPlugin.GenerateSW(),
 
     ]
 }

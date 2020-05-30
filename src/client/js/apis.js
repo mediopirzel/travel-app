@@ -10,14 +10,11 @@ async function geoNamesAPI (destination= '') {
     const req = await fetch(url)
     try{
         const recived = req.json();
-        console.log(`getting lat and lon coordinates from geonames`)
-        console.log(recived);
         return(recived)
         
 
     } catch(error){
         Client.showStatus('We can\'t find your destination')
-        //console.log('error', error);
     }
 }
 
@@ -34,8 +31,6 @@ async function weatherbitAPI (type='', lat='', lon='', days='') {
     const req = await fetch(url)
     try{
         const recived = req.json();
-        console.log(`getting weather forecast from weatherbit`)
-        //console.log(recived);
         return(recived);
 
     } catch(error){
@@ -50,8 +45,6 @@ async function pixabayAPI (destination= '', country= '' ) {
     const req = await fetch(url)
     try{
         const recived = req.json();
-        console.log(`getting images from pixabay`)
-        //console.log(recived);
         return(recived);
 
     } catch(error){
