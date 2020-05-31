@@ -99,3 +99,10 @@ function saveCurrent(req,res){
     currentTrip = {};
     res.send(myTrips);
 }
+
+// Express server test
+app.get('/test', (req, res) => {
+    res.status(200).send('Server Running!')
+})
+
+module.exports = app
