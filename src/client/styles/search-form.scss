@@ -41,6 +41,11 @@
     font-family: 'Signika', sans-serif;
     font-weight: 700;
     text-transform: uppercase;
+    transition: all .5s ease;
+}
+
+.inner-form button:hover {
+    transform: scale(1.1);
 }
 
 

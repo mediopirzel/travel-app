@@ -24,8 +24,7 @@
     flex: 1;
 }
 
-.delete-trip,
-.save-trip{
+.buttons-wrapper a{
     font-size: 0.8em;
     text-transform: uppercase;
     font-weight: 700;
@@ -35,9 +34,14 @@
     padding: 0.9em 2.3em;
     display: inline-block;
     margin: 1em 0;
+    transition: all .5s ease;
 }
 
-.delete-trip{
+.buttons-wrapper a:hover{
+    transform: scale(1.1);
+}
+
+a.delete-trip{
     background: $red;
 }
 

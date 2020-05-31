@@ -14,8 +14,10 @@
 
 
         a {
-            margin-left: 1.1111em;  
+            margin-left: 1.1111em; 
+            transition: all .5s ease;
         }
+
 
         a:before {
             content: '';
@@ -26,12 +28,17 @@
             background-size: contain;
             background-position: center center;
             background-repeat: no-repeat;
+            transition: all .5s ease;
         }
         a.menu-my-trips:before {
             background-image: url(../media/img/ico-my-trips.svg);
         }
         a.menu-search:before {
             background-image: url(../media/img/ico-search.svg);
+        }
+
+        a:hover:before {
+            transform: scale(1.1);
         }
 
         span {
